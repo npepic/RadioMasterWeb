@@ -12,20 +12,6 @@ updated_at datetime
 
 );
 
-create table created_at (
-id int not null primary key auto_increment,
-date datetime not null,
-timezone_type int not null,
-timezone varchar (20) not null
-);
-
-create table updated_at (
-id int not null primary key auto_increment,
-date datetime not null,
-timezone_type int not null,
-timezone varchar (20) not null
-);
-
 create unique index ix1 on user(username); 
 
 
