@@ -26,6 +26,8 @@ public class LoginController {
     Connection connection;
     PreparedStatement statement;
     ResultSet rs;
+    
+    
 
     @GET
     @Path("/getData")
@@ -33,16 +35,24 @@ public class LoginController {
     public ArrayList<UserModel> getDataInJSON() {
 
         ArrayList<UserModel> loginList = new ArrayList<>();
+        
+        
 
         try {
             connection = Database.connect();
 
-            statement = connection.prepareStatement(" select a.id, a.username, a.email, "
-                    + " b.id, b.date, b.timezone_type, b.timezone, "
-                    + " c.id, c.date, c.timezone_type, c.timezone "
-                    + " from user a "
-                    + " inner join created_at b on a.created_at=b.id "
-                    + " inner join updated_at c on a.updated_at=c.id ");
+            statement = connection.prepareStatement("select * from user");
+        
+        
+        
+        
+        
+//        (" select a.id, a.username, a.email, "
+//                    + " b.id, b.date, b.timezone_type, b.timezone, "
+//                    + " c.id, c.date, c.timezone_type, c.timezone "
+//                    + " from user a "
+//                    + " inner join created_at b on a.created_at=b.id "
+//                    + " inner join updated_at c on a.updated_at=c.id ");
 
             statement.setString(1, "%");
             rs = statement.executeQuery();
@@ -53,12 +63,17 @@ public class LoginController {
                 um.setId(rs.getInt("id"));
                 um.setUsername(rs.getString("username"));
                 um.setEmail(rs.getString("email"));
+                um.setCreated_at(rs.getDate("created_at"));
+                um.setUpdated_at(rs.getDate("updated_at"));
+                loginList.add(um);
+                System.out.println(loginList);
 
             }
-
+            System.out.println(loginList);
         } catch (Exception e) {
         }
         return loginList;
     }
 
+    
 }
