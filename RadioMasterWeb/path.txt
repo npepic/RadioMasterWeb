@@ -1,0 +1,1 @@
+mysql -uradiomaster -pradiomaster < g:\RadioMasterWeb\radiomaster.sql
