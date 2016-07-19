@@ -12,19 +12,17 @@ import java.util.Date;
  * @author Nikolina Pepić
  */
 public class UserModel {
-    
+
     private int id;
     private String username;
     private String email;
-    
+
 //    private DateTimeModel created_at;
 //    private DateTimeModel updated_at;
-    
     private Date created_at;
     private Date updated_at;
 
-    
-    public Date getCreated_at() {    
+    public Date getCreated_at() {
         return created_at;
     }
 
@@ -35,7 +33,6 @@ public class UserModel {
     public Date getUpdated_at() {
         return updated_at;
     }
-
 
     public void setUpdated_at(Date updated_at) {
         this.updated_at = updated_at;
@@ -80,6 +77,4 @@ public class UserModel {
 //    public void setUpdated_at(DateTimeModel updated_at) {
 //        this.updated_at = updated_at;
 //    }
-    
-    
 }

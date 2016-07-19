@@ -7,13 +7,12 @@ package radiomaster.model;
 
 import java.util.Date;
 
-
 /**
  *
  * @author Nikolina Pepić
  */
 public class DateTimeModel {
-    
+
     private Date date;
     private int timezone_type;
     private String timezone;
@@ -41,7 +40,5 @@ public class DateTimeModel {
     public void setTimezone(String timezone) {
         this.timezone = timezone;
     }
-    
-    
-    
+
 }

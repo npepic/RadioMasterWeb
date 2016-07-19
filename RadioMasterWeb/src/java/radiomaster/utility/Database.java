@@ -16,8 +16,8 @@ import java.util.logging.Logger;
  * @author Nikolina Pepić
  */
 public class Database {
-    
-    private static Connection veza; 
+
+    private static Connection veza;
 
     private static Database database = null;
 
@@ -48,5 +48,5 @@ public class Database {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
 }
