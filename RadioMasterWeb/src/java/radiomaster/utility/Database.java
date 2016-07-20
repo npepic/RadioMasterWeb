@@ -17,8 +17,8 @@ import java.util.logging.Logger;
  */
 public class Database {
 
+   
     private static Connection veza;
-
     private static Database database = null;
 
     protected Database() {

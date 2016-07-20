@@ -11,6 +11,8 @@ import java.util.Date;
  *
  * @author Nikolina Pepić
  */
+
+//zasad ne koristimo ovu model klasu
 public class DateTimeModel {
 
     private Date date;

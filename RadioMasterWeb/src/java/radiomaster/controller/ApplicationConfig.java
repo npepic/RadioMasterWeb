@@ -12,7 +12,7 @@ import javax.ws.rs.core.Application;
  *
  * @author pepy
  */
-@javax.ws.rs.ApplicationPath("webresources")
+@javax.ws.rs.ApplicationPath("radiomaster")
 public class ApplicationConfig extends Application {
 
     @Override
@@ -29,8 +29,8 @@ public class ApplicationConfig extends Application {
      * If required, comment out calling this method in getClasses().
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
-        resources.add(radiomaster.controller.LoginController.class);
         resources.add(radiomaster.controller.RadiomasterResource.class);
+        resources.add(radiomaster.controller.UserController.class);
     }
     
 }
