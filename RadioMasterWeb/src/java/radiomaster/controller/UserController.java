@@ -14,6 +14,7 @@
 *
 * Copyright (c) Gauss d.o.o. All rights reserved
 */
+
 package radiomaster.controller;
 
 import java.sql.Connection;
@@ -32,7 +33,7 @@ public class UserController {
     //region CLASS PARAMETERS
     Connection connection;
     Statement statement;
-    ResultSet rs;
+    ResultSet resultSet;
     //endregion
     
     //region CUSTOM METHODS
@@ -47,33 +48,28 @@ public class UserController {
     @GET
     @Path("/login")
     @Produces(MediaType.APPLICATION_JSON)
+    
     public UserModel getUser() {
-        UserModel um = null;
+        UserModel userDatabase = null;
 
         try {
-            String query = "select * from user";
+            String query = "SELECT * from user";
             connection = Database.connect();
-
             statement = connection.createStatement();
-            
-            rs = statement.executeQuery(query);
+            resultSet = statement.executeQuery(query);
 
-            while (rs.next()) {
-
-                um = new UserModel();
-                um.setId(rs.getInt("id"));
-                um.setUsername(rs.getString("username"));
-                um.setEmail(rs.getString("email"));
-                um.setPassword(rs.getString("password"));
-                um.setCreated_at(rs.getDate("created_at"));
-                um.setUpdated_at(rs.getDate("updated_at"));
-
+            while (resultSet.next()) {
+                userDatabase = new UserModel();
+                userDatabase.setId(resultSet.getInt("id"));
+                userDatabase.setUsername(resultSet.getString("username"));
+                userDatabase.setEmail(resultSet.getString("email"));
+                //um.setPassword(rs.getString("password"));
+                userDatabase.setCreated_at(resultSet.getDate("created_at"));
+                userDatabase.setUpdated_at(resultSet.getDate("updated_at"));
             }
-
         } catch (Exception e) {
         }
-
-        return um;
+        return userDatabase;
     }
 //endregion
 }

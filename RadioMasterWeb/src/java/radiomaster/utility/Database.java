@@ -1,8 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Connection Manager
+ *
+ * neki opis
+ *
+ * @author Nikolina Pepić
+ * @version 1.0
+ *
+ * Jul 18, 2016
+ *
+ * This code and information is provided "as is" without warranty of any kind,
+ * either expressed or implied, including but not limited to the implied
+ * warranties of merchantability and/or fitness for a particular purpose.
+ *
+ * Copyright (c) Gauss d.o.o. All rights reserved
  */
+
 package radiomaster.utility;
 
 import java.sql.Connection;
@@ -17,14 +29,18 @@ import java.util.logging.Logger;
  */
 public class Database {
 
-   
-    private static Connection veza;
+    //region CLASS PARAMETERS
+    private static Connection connection;
     private static Database database = null;
+    //endregion 
 
+    /**
+     *
+     */
     protected Database() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            veza = DriverManager.getConnection(
+            connection = DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/radiomaster",
                     "radiomaster",
                     "radiomaster");
@@ -34,19 +50,26 @@ public class Database {
         }
     }
 
+    /**
+     * Calling this will establish connection with radiomaster database.
+     *
+     * @return connection
+     */
     public static Connection connect() {
         if (database == null) {
             database = new Database();
         }
-        return veza;
+        return connection;
     }
 
+    /**
+     * Calling this will close the connection with radiomaster database.
+     */
     public static void closeConnection() {
         try {
-            veza.close();
+            connection.close();
         } catch (SQLException ex) {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
 }
