@@ -6,10 +6,11 @@
 package radiomaster.controller;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
@@ -24,10 +25,10 @@ import radiomaster.utility.Database;
 public class LoginController {
 
     Connection connection;
-    PreparedStatement statement;
+    Statement statement;
     ResultSet rs;
 
-    @GET
+    @POST
     @Path("/getData")
     @Produces(MediaType.APPLICATION_JSON)
     public ArrayList<UserModel> getDataInJSON() {
@@ -35,9 +36,10 @@ public class LoginController {
         ArrayList<UserModel> loginList = new ArrayList<>();
 
         try {
+            String query = "select * from user";
             connection = Database.connect();
-
-            statement = connection.prepareStatement("select * from user");
+            
+            statement = connection.createStatement();
 
 //        (" select a.id, a.username, a.email, "
 //                    + " b.id, b.date, b.timezone_type, b.timezone, "
@@ -45,11 +47,12 @@ public class LoginController {
 //                    + " from user a "
 //                    + " inner join created_at b on a.created_at=b.id "
 //                    + " inner join updated_at c on a.updated_at=c.id ");
-            statement.setString(1, "%");
-            rs = statement.executeQuery();
+            //statement.setString(1, "%");
+            rs = statement.executeQuery(query);
 
             UserModel um;
             while (rs.next()) {
+                
                 um = new UserModel();
                 um.setId(rs.getInt("id"));
                 um.setUsername(rs.getString("username"));
@@ -57,11 +60,15 @@ public class LoginController {
                 um.setCreated_at(rs.getDate("created_at"));
                 um.setUpdated_at(rs.getDate("updated_at"));
                 loginList.add(um);
+                
+                
 
             }
 
         } catch (Exception e) {
         }
+        
+        
         return loginList;
     }
 
