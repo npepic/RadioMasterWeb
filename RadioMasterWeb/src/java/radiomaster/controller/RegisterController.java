@@ -67,32 +67,32 @@ public class RegisterController {
         JSONArray jsonArray = new JSONArray();
         UserModel userModel = new UserModel();
 
-        try {
-
-            System.out.println("incoming data" + incomingData);
-
-            ObjectMapper mapper = new ObjectMapper();
-            RegisterEntry registerEntry = mapper.readValue(incomingData, 
-                    RegisterEntry.class);
-
-            int http_code = insertIntoRegister(
-                    registerEntry.username, 
-                    registerEntry.email, 
-                    registerEntry.password, 
-                    registerEntry.created_at, 
-                    registerEntry.updated_at);
-
-            if (http_code == 200) {
-                //returnString = jsonArray.toString();
-                returnString = "User added";
-            } else {
-                return Response.status(500).entity("Unable to add user").build();
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            return Response.status(500).entity("Unable to create new user").build();
-        }
+//        try {
+//
+//            System.out.println("incoming data" + incomingData);
+//
+//            ObjectMapper mapper = new ObjectMapper();
+//            RegisterEntry registerEntry = mapper.readValue(incomingData, 
+//                    RegisterEntry.class);
+//
+//            int http_code = insertIntoRegister(
+//                    registerEntry.username, 
+//                    registerEntry.email, 
+//                    registerEntry.password, 
+//                    registerEntry.created_at, 
+//                    registerEntry.updated_at);
+//
+//            if (http_code == 200) {
+//                //returnString = jsonArray.toString();
+//                returnString = "User added";
+//            } else {
+//                return Response.status(500).entity("Unable to add user").build();
+//            }
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return Response.status(500).entity("Unable to create new user").build();
+//        }
 
         return Response.ok(returnString).build();
     }
