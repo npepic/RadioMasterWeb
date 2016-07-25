@@ -24,16 +24,18 @@ import java.util.Date;
 
 public class UserModel {
 
+
     //region CLASS PARAMETERS
     private int id;
     private String username;
     private String email;
     private String password;
-    private Date created_at;
-    private Date updated_at;
+    private String created_at;
+    private String updated_at;
 
     //endregion
     
+
     //region GETTERS AND SETTERS
     public int getId() {
         return id;
@@ -62,22 +64,44 @@ public class UserModel {
     public void setPassword(String password) {
         this.password = password;
     }
+    
+    
+//    public Date getCreated_at() {
+//        return created_at;
+//    }
+//
+//    public void setCreated_at(Date created_at) {
+//        this.created_at = created_at;
+//    }
+//
+//    public Date getUpdated_at() {
+//        return updated_at;
+//    }
+//
+//    public void setUpdated_at(Date updated_at) {
+//        this.updated_at = updated_at;
+//    }
+    
+    
+    //endregion
 
-    public Date getCreated_at() {
+    public String getCreated_at() {
         return created_at;
     }
-    public void setCreated_at(Date created_at) {
+
+    public void setCreated_at(String created_at) {
         this.created_at = created_at;
     }
 
-    public Date getUpdated_at() {
+    public String getUpdated_at() {
         return updated_at;
     }
-    public void setUpdated_at(Date updated_at) {
+
+    public void setUpdated_at(String updated_at) {
         this.updated_at = updated_at;
     }
-    
-    //endregion
+
+
 }
 
 

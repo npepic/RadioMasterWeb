@@ -53,7 +53,7 @@ public class UserController {
         UserModel userDatabase = null;
 
         try {
-            String query = "SELECT * from user";
+            String query = "SELECT * from user LIMIT 1";
             connection = Database.connect();
             statement = connection.createStatement();
             resultSet = statement.executeQuery(query);
@@ -64,12 +64,14 @@ public class UserController {
                 userDatabase.setUsername(resultSet.getString("username"));
                 userDatabase.setEmail(resultSet.getString("email"));
                 //um.setPassword(rs.getString("password"));
-                userDatabase.setCreated_at(resultSet.getDate("created_at"));
-                userDatabase.setUpdated_at(resultSet.getDate("updated_at"));
+//                userDatabase.setCreated_at(resultSet.getDate("created_at"));
+//                userDatabase.setUpdated_at(resultSet.getDate("updated_at"));
             }
         } catch (Exception e) {
         }
         return userDatabase;
     }
+    
+
 //endregion
 }

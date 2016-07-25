@@ -30,6 +30,7 @@ public class ApplicationConfig extends Application {
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(radiomaster.controller.RadiomasterResource.class);
+        resources.add(radiomaster.controller.RegisterController2.class);
         resources.add(radiomaster.controller.UserController.class);
     }
     
