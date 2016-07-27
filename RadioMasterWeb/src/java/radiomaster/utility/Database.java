@@ -14,11 +14,12 @@
  *
  * Copyright (c) Gauss d.o.o. All rights reserved
  */
-
 package radiomaster.utility;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -30,8 +31,10 @@ import java.util.logging.Logger;
 public class Database {
 
     //region CLASS PARAMETERS
-    private static Connection connection;
+    private static Connection databaseConnection;
     private static Database database = null;
+    public ResultSet resultSet;
+    public PreparedStatement preparedStatement;
     //endregion 
 
     /**
@@ -40,7 +43,7 @@ public class Database {
     protected Database() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            connection = DriverManager.getConnection(
+            databaseConnection = DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/radiomaster",
                     "radiomaster",
                     "radiomaster");
@@ -59,7 +62,7 @@ public class Database {
         if (database == null) {
             database = new Database();
         }
-        return connection;
+        return databaseConnection;
     }
 
     /**
@@ -67,9 +70,27 @@ public class Database {
      */
     public static void closeConnection() {
         try {
-            connection.close();
+            databaseConnection.close();
         } catch (SQLException ex) {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-}
+
+    public ResultSet getResultSet(String sqlQuery, Connection connection) {
+
+        String query = sqlQuery;
+        databaseConnection = connection;
+
+        try {
+            
+            preparedStatement = databaseConnection.prepareStatement(query);
+            resultSet = preparedStatement.executeQuery();
+            
+        } catch (Exception e) {
+        }
+        
+        return resultSet;
+        
+        }
+
+    }

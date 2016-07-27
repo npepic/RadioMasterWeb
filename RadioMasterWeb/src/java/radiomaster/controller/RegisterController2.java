@@ -64,22 +64,19 @@ public class RegisterController2 {
 
         try {
 
-//            if (incomingData == MediaType.APPLICATION_JSON) {
             JSONObject userData = new JSONObject(incomingData);
 
             userModel.setUsername(userData.getString("username"));
             userModel.setEmail(userData.getString("email"));
             userModel.setPassword(userData.getString("password"));
-
             userModel.setCreated_at(userData.getString("created_at"));
             userModel.setUpdated_at(userData.getString("updated_at"));
 
-//            }
             int http_code = insertIntoRegister(userModel);
 
             if (http_code == 200) {
                 jsonObject.put("HTTP_CODE", "200");
-                jsonObject.put("message", "User successfully added");
+                jsonObject.put("message", "OK");
                 jsonObject.put("username", userData.optString("username"));
                 jsonObject.put("request", incomingData);
                 returnString = jsonObject.toString();
