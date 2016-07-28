@@ -1,0 +1,5 @@
+mysql -uradiomaster -pradiomaster < g:\RadioMasterWeb\radiomaster.sql
+
+E:\Gauss\RadioMasterWeb\RadioMasterWeb\radiomaster.sql
+
+All Files	C:\Gauss\RadioMasterWeb\RadioMasterWeb\radiomaster.sql
